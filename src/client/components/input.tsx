@@ -1,8 +1,3 @@
-import emotes from "@/client/emotes.json";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import clsx from "clsx";
-import Fuse from "fuse.js";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import {
   type Dispatch,
   type SetStateAction,
@@ -13,7 +8,12 @@ import {
   useRef,
   useState,
 } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import clsx from "clsx";
+import Fuse from "fuse.js";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { IdentityContext } from "@/client/context/IdentityContext";
+import emotes from "@/client/emotes.json";
 import type { UnfocusInputAfterSend, User } from "@/types";
 
 const bucket = new Fuse([...emotes]);

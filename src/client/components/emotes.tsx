@@ -1,6 +1,6 @@
 import { Emote } from "./messages/emote";
-import emotes from "@/client/emotes.json";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import emotes from "@/client/emotes.json";
 
 export function EmoteMenu() {
   return (

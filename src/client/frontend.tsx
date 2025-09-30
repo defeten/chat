@@ -4,11 +4,11 @@
  *
  * It is included in `src/index.html`.
  */
+import { StrictMode } from "react";
 import App from "./App";
 import "./emotes.css";
 import "./index.css";
 import "overlayscrollbars/overlayscrollbars.css";
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 const elem = document.getElementById("root")!;

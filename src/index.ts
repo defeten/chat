@@ -1,5 +1,5 @@
-import index from "@/client/index.html";
 import { type BunRequest, serve } from "bun";
+import index from "@/client/index.html";
 import { check } from "@/server/api/check";
 import { me } from "@/server/api/me";
 import { signin } from "@/server/api/signin";

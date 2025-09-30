@@ -1,7 +1,7 @@
+import type { Dispatch, SetStateAction } from "react";
 import { SignOut } from "./components/auth/sign-out";
 import { Button } from "./components/ui/button";
 import clsx from "clsx";
-import type { Dispatch, SetStateAction } from "react";
 import { IoChatbox, IoHappy, IoPerson, IoSettings } from "react-icons/io5";
 import type { MainContext } from "@/types";
 

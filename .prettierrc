@@ -4,10 +4,12 @@
     "prettier-plugin-tailwindcss"
   ],
   "importOrder": [
+    "^react(?:-dom)?$",
     "<THIRD_PARTY_MODULES>",
     "^@/client/hooks/(.*)$",
     "^@/client/context/(.*)$",
     "^@/client/components/(.*)$",
+    "^@/client/(.*)$",
     "^@/server/(.*)$",
     "^@/types$"
   ],

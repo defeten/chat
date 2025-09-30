@@ -1,12 +1,12 @@
+import { type ReactNode, useContext } from "react";
 import { Author } from "./author";
 import { Emote } from "./emote";
 import { Link } from "./link";
-import emotes from "@/client/emotes.json";
-import { URL_REGEX } from "@/client/util/regex";
 import clsx from "clsx";
-import { type ReactNode, useContext } from "react";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import { Time } from "@/client/components/messages/time";
+import emotes from "@/client/emotes.json";
+import { URL_REGEX } from "@/client/util/regex";
 import type { UMSG } from "@/types";
 
 interface Props {

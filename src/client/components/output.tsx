@@ -1,9 +1,9 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import {
   OverlayScrollbarsComponent,
   type OverlayScrollbarsComponentRef,
 } from "overlayscrollbars-react";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { MessageRenderer } from "@/client/components/messages/render-message";
 import type { RenderableMessage } from "@/types";
 

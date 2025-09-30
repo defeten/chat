@@ -1,5 +1,3 @@
-import { Chat } from "@/client/Chat";
-import { Switcher } from "@/client/Switcher";
 import { useCallback, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useSocketMessages } from "@/client/hooks/useMessages";
@@ -9,6 +7,8 @@ import { NoIdentity } from "@/client/components/auth/no-identity";
 import { EmoteMenu } from "@/client/components/emotes";
 import { Settings } from "@/client/components/settings";
 import { UserList } from "@/client/components/users";
+import { Chat } from "@/client/Chat";
+import { Switcher } from "@/client/Switcher";
 import { clientUserMessageEvent } from "@/server/socket/event";
 import type { MainContext } from "@/types";
 

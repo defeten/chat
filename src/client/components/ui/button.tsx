@@ -4,7 +4,7 @@ import type { ComponentProps, PropsWithChildren } from "react";
 export function Button(
   props: PropsWithChildren<
     ComponentProps<"button"> & { theme: "light" | "dark" }
-  >
+  >,
 ) {
   return (
     <button
@@ -18,7 +18,7 @@ export function Button(
           "hover:bg-stone-700": props.theme === "dark",
           "hover:bg-stone-400": props.theme === "light",
         },
-        props.className
+        props.className,
       )}
     >
       {props.value}

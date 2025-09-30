@@ -1,6 +1,6 @@
 import { Connections } from "../..";
-import type { UserSockets } from "@/types";
 import type { Event } from "./event";
+import type { UserSockets } from "@/types";
 
 export function emitToSocket(socket: UserSockets[number], event: Event) {
   socket.send(event.json());

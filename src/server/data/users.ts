@@ -1,5 +1,5 @@
-import type { BackendUser } from "@/types";
 import { sqlite } from "./init";
+import type { BackendUser } from "@/types";
 
 export async function insertUser({
   name,
@@ -11,7 +11,7 @@ export async function insertUser({
 
 export async function getUser(
   name: string,
-  caseSensitive = true
+  caseSensitive = true,
 ): Promise<BackendUser | null> {
   let result = null;
   if (caseSensitive) {

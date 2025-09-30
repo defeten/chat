@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import { PERMISSION_NAMES } from "@/server/const";
 import type { User } from "@/types";
-import clsx from "clsx";
 
 type Props = {
   data: User;

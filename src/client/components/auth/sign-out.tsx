@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "@/client/components/ui/button";
 import { IoLogOut } from "react-icons/io5";
+import { Button } from "@/client/components/ui/button";
 
 export function SignOut() {
   const [pending, set] = useState(false);
@@ -12,7 +12,7 @@ export function SignOut() {
 
   return (
     <Button theme="dark" onClick={() => click()} disabled={pending}>
-      <IoLogOut className="w-6 h-6 fill-red-900" />
+      <IoLogOut className="h-6 w-6 fill-red-900" />
     </Button>
   );
 }

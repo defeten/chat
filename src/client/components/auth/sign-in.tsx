@@ -63,7 +63,7 @@ export function SignIn({ showForm, username, setUsername }: Props) {
         </button>
         <button
           type="button"
-          className="cursor-pointer text-red-800 rounded-md p-1 transition-colors hover:bg-stone-300"
+          className="cursor-pointer rounded-md p-1 text-red-800 transition-colors hover:bg-stone-300"
           onClick={() => showForm(false)}
         >
           close

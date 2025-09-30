@@ -1,20 +1,21 @@
+import emotes from "@/client/emotes.json";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import clsx from "clsx";
+import Fuse from "fuse.js";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import {
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type Dispatch,
-  type SetStateAction,
 } from "react";
 import { IdentityContext } from "@/client/context/IdentityContext";
-import Fuse from "fuse.js";
-import clsx from "clsx";
 import type { UnfocusInputAfterSend, User } from "@/types";
-import emotes from "@/client/emotes.json";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { useLocalStorage } from "@uidotdev/usehooks";
+
 const bucket = new Fuse([...emotes]);
 
 type Props = {
@@ -32,7 +33,7 @@ export function Input({ input, setInput, send, users }: Props) {
   const ignoreSelectChange = useRef(false);
   const [unfocusInput] = useLocalStorage<UnfocusInputAfterSend>(
     "pref:unfocusaftersend",
-    false
+    false,
   );
 
   const results = useMemo(() => {
@@ -85,7 +86,7 @@ export function Input({ input, setInput, send, users }: Props) {
 
         setInput(
           (current) =>
-            current.slice(0, start) + replacement + current.slice(end)
+            current.slice(0, start) + replacement + current.slice(end),
         );
 
         requestAnimationFrame(() => {
@@ -104,7 +105,7 @@ export function Input({ input, setInput, send, users }: Props) {
         } else setSelection(selectionOverride);
       }
     },
-    [selection, results]
+    [selection, results],
   );
 
   const updateSearchTerm = useCallback(() => {
@@ -135,7 +136,7 @@ export function Input({ input, setInput, send, users }: Props) {
   return (
     <div className="relative">
       {results.length > 0 && (
-        <div className="absolute -mt-10 gap-x-2 z-10 p-1 bg-stone-700 text-stone-400 rounded-sm max-w-[calc(100%-0.5rem)] overflow-hidden">
+        <div className="absolute z-10 -mt-10 max-w-[calc(100%-0.5rem)] gap-x-2 overflow-hidden rounded-sm bg-stone-700 p-1 text-stone-400">
           <OverlayScrollbarsComponent
             element="div"
             options={{
@@ -154,7 +155,7 @@ export function Input({ input, setInput, send, users }: Props) {
                   handleTabDown(index);
                   textarea.current?.focus();
                 }}
-                className={clsx("cursor-pointer mr-1", {
+                className={clsx("mr-1 cursor-pointer", {
                   "font-semibold":
                     selection === -1
                       ? index === 0
@@ -180,7 +181,7 @@ export function Input({ input, setInput, send, users }: Props) {
               }.`
             : "Authenticate to send messages."
         }
-        className="min-h-16 resize-none rounded-md border-2 border-stone-600 p-2 transition-colors outline-none focus:border-stone-400 w-full"
+        className="min-h-16 w-full resize-none rounded-md border-2 border-stone-600 p-2 transition-colors outline-none focus:border-stone-400"
         value={input}
         onChange={({ target }) => {
           setInput(target.value);

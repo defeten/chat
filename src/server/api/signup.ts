@@ -21,7 +21,7 @@ export async function signup(req: Bun.BunRequest<"/signup">) {
   if (!USERNAME_REGEX.test(name)) {
     return new Response(
       "username must be 4-24 characters, including only numbers, letters, or underscores",
-      { status: 400 }
+      { status: 400 },
     );
   }
 

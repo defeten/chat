@@ -1,5 +1,4 @@
-import { Connections, History } from "@/index";
-import type { Session, UserSockets } from "@/types";
+import { id } from "../util";
 import {
   HistoryEvent,
   IdentityEvent,
@@ -7,7 +6,8 @@ import {
   UsersEvent,
 } from "./event";
 import { broadcast, emitToSocket } from "./send";
-import { id } from "../util";
+import { Connections, History } from "@/index";
+import type { Session, UserSockets } from "@/types";
 
 export function open(socket: Bun.ServerWebSocket<Session>) {
   const now = Date.now();
@@ -26,7 +26,7 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
         permission: socket.data.permission,
         at: now,
         id: id(),
-      })
+      }),
     );
   }
 
@@ -39,7 +39,7 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
       name: socket.data.username,
       permission: socket.data.permission,
       id: id(),
-    })
+    }),
   );
   // tell the connection who all is connected
   emitToSocket(
@@ -54,7 +54,7 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
         .toArray(),
       id: id(),
       at: now,
-    })
+    }),
   );
   // send the connection the latest 200 messages
   emitToSocket(
@@ -63,6 +63,6 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
       messages: History,
       at: now,
       id: id(),
-    })
+    }),
   );
 }

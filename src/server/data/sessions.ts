@@ -1,5 +1,5 @@
-import type { Session } from "@/types";
 import { sqlite } from "./init";
+import type { Session } from "@/types";
 
 export async function insertSession({
   id,
@@ -31,7 +31,7 @@ export async function getUserSessions(name: string): Promise<Session[]> {
         since: result[3],
         until: result[4],
         permission: result[5],
-      } satisfies Session)
+      }) satisfies Session,
   );
   return mapped;
 }

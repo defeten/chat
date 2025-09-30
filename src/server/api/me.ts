@@ -1,5 +1,5 @@
-import type { User } from "@/types";
 import { verify } from "../auth/verify";
+import type { User } from "@/types";
 
 export async function me(req: Bun.BunRequest<"/me">) {
   const result = await verify(req);

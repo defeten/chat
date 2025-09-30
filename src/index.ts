@@ -1,16 +1,16 @@
-import { serve, type BunRequest } from "bun";
 import index from "@/client/index.html";
-import { init } from "@/server/data/init";
+import { type BunRequest, serve } from "bun";
+import { check } from "@/server/api/check";
 import { me } from "@/server/api/me";
-import type { ConnectionsMap, Session, UMSG } from "@/types";
-import { verify } from "@/server/auth/verify";
-import { open } from "@/server/socket/open";
-import { close } from "@/server/socket/close";
-import { message } from "@/server/socket/message";
-import { signup } from "@/server/api/signup";
 import { signin } from "@/server/api/signin";
 import { signout } from "@/server/api/signout";
-import { check } from "@/server/api/check";
+import { signup } from "@/server/api/signup";
+import { verify } from "@/server/auth/verify";
+import { init } from "@/server/data/init";
+import { close } from "@/server/socket/close";
+import { message } from "@/server/socket/message";
+import { open } from "@/server/socket/open";
+import type { ConnectionsMap, Session, UMSG } from "@/types";
 
 await init();
 export const Connections: ConnectionsMap = new Map();

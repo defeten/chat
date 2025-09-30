@@ -1,6 +1,6 @@
 import { memo } from "react";
-import type { RenderableMessage } from "@/types";
 import { UserMessage } from "@/client/components/messages/user-message";
+import type { RenderableMessage } from "@/types";
 
 type Props = {
   message: RenderableMessage;

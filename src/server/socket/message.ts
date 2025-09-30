@@ -1,12 +1,12 @@
 import { History } from "@/index";
-import type { Message, Session, UMSG } from "@/types";
 import { UserMessageEvent } from "@/server/socket/event";
 import { broadcast } from "@/server/socket/send";
 import { id } from "@/server/util";
+import type { Message, Session, UMSG } from "@/types";
 
 export function message(
   socket: Bun.ServerWebSocket<Session>,
-  message: string | Buffer<ArrayBufferLike>
+  message: string | Buffer<ArrayBufferLike>,
 ) {
   const now = Date.now();
   if (typeof message !== "string") {

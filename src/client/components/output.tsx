@@ -1,11 +1,11 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import {
   OverlayScrollbarsComponent,
   type OverlayScrollbarsComponentRef,
 } from "overlayscrollbars-react";
-import type { RenderableMessage } from "@/types";
-import { MessageRenderer } from "@/client/components/messages/render-message";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { MessageRenderer } from "@/client/components/messages/render-message";
+import type { RenderableMessage } from "@/types";
 
 type Props = {
   renderable: RenderableMessage[];
@@ -14,7 +14,7 @@ type Props = {
 export function Output({ renderable }: Props) {
   const [scrollBehavior] = useLocalStorage<"smooth" | "instant">(
     "pref:scrollbehavior",
-    "instant"
+    "instant",
   );
   const osRef = useRef<OverlayScrollbarsComponentRef<"div">>(null);
   const [scrollLock, setScrollLock] = useState(true);

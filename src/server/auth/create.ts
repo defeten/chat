@@ -4,7 +4,7 @@ import type { Permission, SessionWithToken } from "@/types";
 
 export async function createSession(
   username: string,
-  permission: Permission
+  permission: Permission,
 ): Promise<SessionWithToken> {
   const now = Date.now();
 

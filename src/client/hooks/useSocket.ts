@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 export function useSocket(url = "/ws") {
@@ -22,9 +22,12 @@ export function useSocket(url = "/ws") {
   const error = useCallback(() => {
     const delay = Math.min(30000, connectionAttempts.current * 5000);
     toast(`Reconnecting in ${Math.floor(delay / 1000)}s...`);
-    reconnecting.current = setTimeout(() => {
-      connect();
-    }, Math.min(30000, connectionAttempts.current * 5000));
+    reconnecting.current = setTimeout(
+      () => {
+        connect();
+      },
+      Math.min(30000, connectionAttempts.current * 5000),
+    );
   }, []);
 
   useEffect(() => {

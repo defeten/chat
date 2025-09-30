@@ -10,7 +10,7 @@ async function extractEmoteNames(filePath) {
     const cssContent = await readFile(filePath, "utf-8");
 
     const matches = new Set(
-      [...cssContent.matchAll(emoteRegex)].map((match) => match[1])
+      [...cssContent.matchAll(emoteRegex)].map((match) => match[1]),
     );
     const jsonOutput = JSON.stringify([...matches.values()], null, 2);
     await writeFile(jsonFilePath, jsonOutput);

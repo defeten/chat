@@ -11,7 +11,7 @@ export function Time({ timestamp }: Props) {
 
   return (
     <time
-      className={clsx("text-xs text-stone-500 mr-2", { hidden: !show })}
+      className={clsx("mr-2 text-xs text-stone-500", { hidden: !show })}
       dateTime={date.toISOString()}
     >
       {date.toLocaleTimeString(undefined, {

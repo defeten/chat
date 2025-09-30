@@ -5,7 +5,7 @@ import { SignUp } from "@/client/components/auth/sign-up";
 export function NoIdentity() {
   const [username, setUsername] = useState("");
   const [authDestination, setAuthDestination] = useState<"signin" | "signup">(
-    "signin"
+    "signin",
   );
   const [showForm, setShowForm] = useState(false);
 

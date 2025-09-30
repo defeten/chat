@@ -1,13 +1,13 @@
-import { Time } from "@/client/components/messages/time";
-import type { UMSG } from "@/types";
 import { Author } from "./author";
-import { URL_REGEX } from "@/client/util/regex";
-import { useContext, type ReactNode } from "react";
-import { IdentityContext } from "@/client/context/IdentityContext";
-import clsx from "clsx";
-import emotes from "@/client/emotes.json";
 import { Emote } from "./emote";
 import { Link } from "./link";
+import emotes from "@/client/emotes.json";
+import { URL_REGEX } from "@/client/util/regex";
+import clsx from "clsx";
+import { type ReactNode, useContext } from "react";
+import { IdentityContext } from "@/client/context/IdentityContext";
+import { Time } from "@/client/components/messages/time";
+import type { UMSG } from "@/types";
 
 interface Props {
   data: UMSG;
@@ -53,7 +53,7 @@ export function UserMessage({ data, _continue }: Props) {
   return (
     <div
       data-id={data.id}
-      className={clsx({ "bg-cyan-700/50 rounded-xs mb-[0.5px]": mentionsMe })}
+      className={clsx({ "mb-[0.5px] rounded-xs bg-cyan-700/50": mentionsMe })}
     >
       <Time timestamp={data.at} />
       {!_continue && (

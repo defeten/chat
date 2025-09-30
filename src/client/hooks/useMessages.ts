@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Message, RenderableMessage, User, YOUARE } from "@/types";
 import toast from "react-hot-toast";
+import type { Message, RenderableMessage, User, YOUARE } from "@/types";
 
 export function useSocketMessages(socket: WebSocket | null) {
   const [me, setMe] = useState<YOUARE | null>(null);
@@ -46,7 +46,7 @@ export function useSocketMessages(socket: WebSocket | null) {
         case "LEAVE": {
           toast(`${message.data.name} has left.`);
           setUsers((current) =>
-            current.filter((v) => v.name !== message.data.name)
+            current.filter((v) => v.name !== message.data.name),
           );
           break;
         }

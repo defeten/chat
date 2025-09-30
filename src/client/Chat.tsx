@@ -1,7 +1,7 @@
-import type { RenderableMessage, User } from "@/types";
-import { Input } from "./components/input";
-import { Output } from "./components/output";
 import type { Dispatch, SetStateAction } from "react";
+import { Input } from "@/client/components/input";
+import { Output } from "@/client/components/output";
+import type { RenderableMessage, User } from "@/types";
 
 type Props = {
   msgs: RenderableMessage[];

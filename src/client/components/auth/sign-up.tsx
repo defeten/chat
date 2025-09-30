@@ -1,6 +1,6 @@
-import type { API_Check_Response } from "@/types";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
+import type { API_Check_Response } from "@/types";
 
 type Props = {
   username: string;
@@ -20,7 +20,7 @@ export function SignUp({ username, setUsername, showForm }: Props) {
     async function lookup() {
       if (!cancelled) {
         const response = await fetch(
-          "/api/check?" + new URLSearchParams({ name: username })
+          "/api/check?" + new URLSearchParams({ name: username }),
         );
         if (response.ok) {
           const json: API_Check_Response = await response.json();
@@ -101,7 +101,7 @@ export function SignUp({ username, setUsername, showForm }: Props) {
       <div className="flex items-center justify-between">
         <button
           disabled={usernameTaken}
-          className="cursor-pointer rounded-md p-1 transition-colors hover:bg-stone-300 disabled:bg-stone-700 disabled:cursor-not-allowed"
+          className="cursor-pointer rounded-md p-1 transition-colors hover:bg-stone-300 disabled:cursor-not-allowed disabled:bg-stone-700"
           type="submit"
         >
           signup

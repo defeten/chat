@@ -9,22 +9,22 @@ export function Settings() {
   const [time, setTime] = useLocalStorage("pref:showtime", false);
   const [scrollBehavior, setScrollBehavior] = useLocalStorage<ScrollBehavior>(
     "pref:scrollbehavior",
-    "instant"
+    "instant",
   );
   const [maxLinkLength, setMaxLinkLength] = useLocalStorage<MaxLinkLength>(
     "pref:maxlinklength",
-    80
+    80,
   );
   const [linkBehavior, setLinkBehavior] = useLocalStorage<LinkBehavior>(
     "pref:linkbehavior",
-    "newtab"
+    "newtab",
   );
   const [unfocusInput, setUnfocusInput] =
     useLocalStorage<UnfocusInputAfterSend>("pref:unfocusaftersend", false);
 
   return (
-    <div className="text-stone-300 p-2 rounded-md justify-center grid grid-cols-2 mx-auto my-auto bg-stone-700">
-      <p className="font-bold text-lg mx-auto text-center col-span-2">
+    <div className="mx-auto my-auto grid grid-cols-2 justify-center rounded-md bg-stone-700 p-2 text-stone-300">
+      <p className="col-span-2 mx-auto text-center text-lg font-bold">
         Preferences
       </p>
       <label className="text-sm font-semibold" htmlFor="showtime">

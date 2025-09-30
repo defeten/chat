@@ -1,8 +1,6 @@
 import { memo } from "react";
 import type { RenderableMessage } from "@/types";
 import { UserMessage } from "@/client/components/messages/user-message";
-import { UserJoin } from "./user-join";
-import { UserLeave } from "./user-leave";
 
 type Props = {
   message: RenderableMessage;
@@ -24,12 +22,6 @@ export const MessageRenderer = memo(({ message }: Props) => {
     }
     case "UMSGC": {
       return <UserMessage data={message.data} _continue={true} />;
-    }
-    case "JOIN": {
-      return <UserJoin data={message.data} />;
-    }
-    case "LEAVE": {
-      return <UserLeave data={message.data} />;
     }
   }
 });

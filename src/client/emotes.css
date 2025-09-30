@@ -1,0 +1,224 @@
+[data-emote] {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-indent: -999em;
+  margin-top: -32px;
+  top: 8px;
+  margin-right: 0.25rem;
+}
+
+[data-emote="DIESOFCRINGE"] {
+  width: 65px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/DIESOFCRINGE.webp");
+}
+
+[data-emote="RIPBOZO"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/RIPBOZO.webp");
+}
+
+[data-emote="TeaTime"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/TeaTime.webp");
+}
+
+[data-emote] + [data-emote="TeaTime"] {
+  margin-left: -0.25rem;
+}
+
+[data-emote="TeaTime"]:has(+ [data-emote]) {
+  transform: scaleX(-1);
+  margin-right: -0.2rem;
+}
+
+[data-emote="SNIFFA"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/SNIFFA.webp");
+}
+
+[data-emote="Hmm"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/Hmm.webp");
+}
+
+[data-emote="BRUH"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/BRUH.webp");
+}
+
+[data-emote="HmmNotes"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/HmmNotes.webp");
+}
+
+[data-emote="GIGACHAD"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/GIGACHAD.webp");
+}
+
+[data-emote="HUH"] {
+  width: 58px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/HUH.webp");
+}
+
+[data-emote="LICKA"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/LICKA.webp");
+}
+
+[data-emote="LookUp"] {
+  width: 51px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/LookUp.webp");
+}
+
+[data-emote="LULW"] {
+  width: 28px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/LULW.webp");
+}
+
+[data-emote="monkaX"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/monkaX.webp");
+}
+
+[data-emote="NONONONONO"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/NONONONONO.webp");
+}
+
+[data-emote="ohno"] {
+  width: 30px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/ohno.webp");
+}
+
+[data-emote="OkaygeBusiness"] {
+  width: 39px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/OkaygeBusiness.webp");
+}
+
+[data-emote="OMEGALUL"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/OMEGALUL.webp");
+}
+
+[data-emote="Clap"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/Clap.webp");
+}
+
+[data-emote] + [data-emote="Clap"] {
+  margin-left: -0.25rem;
+}
+
+[data-emote="Clap"]:has(+ [data-emote]:last-of-type) {
+  transform: scaleX(-1);
+  margin-right: -0.2rem;
+}
+
+[data-emote="mroww"] {
+  width: 36px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/mroww.webp");
+}
+
+[data-emote="catClap"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/catClap.webp");
+}
+
+[data-emote="PepoG"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/PepoG.webp");
+}
+
+[data-emote="PepoComfy"] {
+  width: 34px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/PepoComfy.webp");
+}
+
+[data-emote="catJAM"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/catJAM.webp");
+}
+
+[data-emote="catWait"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/catWait.webp");
+}
+
+[data-emote="Tomfoolery"] {
+  width: 30px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/Tomfoolery.webp");
+}
+
+[data-emote] + [data-emote="Tomfoolery"] {
+  transform: scaleX(-1);
+  margin-right: -0.2rem;
+}
+
+[data-emote="VeryPog"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/VeryPog.webp");
+}
+
+[data-emote="WWWWaiting"] {
+  width: 36px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/WWWWaiting.webp");
+}
+
+[data-emote="xpp"] {
+  width: 57px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/xpp.webp");
+}
+
+[data-emote="zfgMad"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/zfgMad.webp");
+}
+
+[data-emote="zfgRunOgre"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/zfgRunOgre.webp");
+}
+
+[data-emote="zfgSad"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/zfgSad.webp");
+}
+
+[data-emote="zfgSmug"] {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://emotes.defeten.com/zfgSmug.webp");
+}

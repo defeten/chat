@@ -1,0 +1,31 @@
+{
+  "name": "bun-react-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "build": "bun build.ts",
+    "start": "bun --cwd=./dist index.js"
+  },
+  "dependencies": {
+    "@oslojs/crypto": "^1.0.1",
+    "@uidotdev/usehooks": "^2.4.1",
+    "bun-plugin-tailwind": "^0.0.15",
+    "clsx": "^2.1.1",
+    "fuse.js": "^7.1.0",
+    "overlayscrollbars": "^2.12.0",
+    "overlayscrollbars-react": "^0.5.6",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4.1.13"
+  }
+}

@@ -104,7 +104,7 @@ export type API_Check_Response = {
   exists: boolean;
 };
 
-export type MainContext = "chat" | "emotes" | "users" | "settings";
+export type AppView = "chat" | "users" | "settings";
 
 export type ScrollBehavior = "instant" | "smooth";
 export type MaxLinkLength = number;

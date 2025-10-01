@@ -4,18 +4,18 @@ import { useSocketMessages } from "@/client/hooks/useMessages";
 import { useSocket } from "@/client/hooks/useSocket";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import { NoIdentity } from "@/client/components/auth/no-identity";
+import { Footer } from "@/client/components/footer";
 import { Settings } from "@/client/components/settings";
 import { UserList } from "@/client/components/users";
 import { Chat } from "@/client/Chat";
-import { Switcher } from "@/client/Switcher";
 import { clientUserMessageEvent } from "@/server/socket/event";
-import type { MainContext } from "@/types";
+import type { AppView } from "@/types";
 
 export default function App() {
   const socket = useSocket();
   const { me, msgs, users } = useSocketMessages(socket);
   const [input, setInput] = useState("");
-  const [context, setContext] = useState<MainContext>("chat");
+  const [view, setView] = useState<AppView>("chat");
 
   const send = useCallback(
     (data: string) => {
@@ -39,7 +39,7 @@ export default function App() {
     <IdentityContext.Provider value={me}>
       <Toaster position="top-right" />
       <div className="flex grow flex-col">
-        {context === "chat" && (
+        {view === "chat" && (
           <Chat
             msgs={msgs}
             input={input}
@@ -48,10 +48,10 @@ export default function App() {
             users={users}
           />
         )}
-        {context === "users" && <UserList users={users} />}
-        {context === "settings" && <Settings />}
+        {view === "users" && <UserList users={users} />}
+        {view === "settings" && <Settings />}
       </div>
-      <Switcher context={context} setContext={setContext} />
+      <Footer view={view} setView={setView} />
     </IdentityContext.Provider>
   );
 }

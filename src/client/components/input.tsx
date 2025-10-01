@@ -50,7 +50,9 @@ export function Input({ input, setInput, send, users }: Props) {
 
   useEffect(() => {
     users.forEach((user) => {
-      bucket.add({ type: "user", name: user.name });
+      if (user.name !== me?.name) {
+        bucket.add({ type: "user", name: user.name });
+      }
     });
 
     return () => {
@@ -166,6 +168,9 @@ export function Input({ input, setInput, send, users }: Props) {
             className="flex max-w-full gap-x-1 pb-0.5 whitespace-nowrap"
           >
             {results.map((r, index) => {
+              const isSelected =
+                selection === -1 ? index === 0 : selection === index;
+
               if (r.item.type === "emote") {
                 return (
                   <span
@@ -177,10 +182,7 @@ export function Input({ input, setInput, send, users }: Props) {
                     className={clsx(
                       "mr-1 -mb-2 cursor-pointer [&>span]:-mb-0.5",
                       {
-                        "[&>span]:grayscale":
-                          selection === -1 ? index !== 0 : selection !== index,
-                        "[&>span]:scale-110":
-                          selection === -1 ? index === 0 : selection === index,
+                        "[&>span]:opacity-25 [&>span]:grayscale": !isSelected,
                       },
                     )}
                   >
@@ -215,11 +217,7 @@ export function Input({ input, setInput, send, users }: Props) {
         id="input"
         ref={textareaRef}
         placeholder={
-          me
-            ? `Hi ${me.name}, talk with ${users.length - 1} other chatter${
-                users.length - 1 === 1 ? "" : "s"
-              }.`
-            : "Authenticate to send messages."
+          me ? `Write a message, ${me.name}!` : "Authenticate to send messages."
         }
         className="min-h-16 w-full resize-none rounded-md border-2 border-stone-600 p-2 transition-colors outline-none focus:border-stone-400"
         value={input}

@@ -10,7 +10,7 @@ type Props = {
 
 export function Output({ renderable }: Props) {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [scrollBehavior] = useLocalStorage<"smooth" | "instant">(
+  const [scrollBehavior] = useLocalStorage<ScrollBehavior>(
     "pref:scrollbehavior",
     "instant",
   );

@@ -8,14 +8,19 @@ import {
   useRef,
   useState,
 } from "react";
+import { Emote } from "./messages/emote";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import clsx from "clsx";
 import Fuse from "fuse.js";
+import { ScrollArea } from "radix-ui";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import emotes from "@/client/emotes.json";
 import type { UnfocusInputAfterSend, User } from "@/types";
 
-const bucket = new Fuse([...emotes]);
+const bucket = new Fuse(
+  [...emotes].map((e) => ({ type: "emote", name: e })),
+  { keys: ["name"] },
+);
 
 type Props = {
   input: string;
@@ -28,7 +33,8 @@ export function Input({ input, setInput, send, users }: Props) {
   const me = useContext(IdentityContext);
   const [selection, setSelection] = useState(-1);
   const [searchTerm, setSearchTerm] = useState("");
-  const textarea = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const scrollViewportRef = useRef<HTMLDivElement>(null);
   const ignoreSelectChange = useRef(false);
   const [unfocusInput] = useLocalStorage<UnfocusInputAfterSend>(
     "pref:unfocusaftersend",
@@ -44,23 +50,26 @@ export function Input({ input, setInput, send, users }: Props) {
 
   useEffect(() => {
     users.forEach((user) => {
-      bucket.add(user.name);
+      bucket.add({ type: "user", name: user.name });
     });
 
     return () => {
       users.forEach((user) => {
-        bucket.remove((predicate) => user.name === predicate);
+        bucket.remove(
+          (predicate) =>
+            predicate.type === "user" && user.name === predicate.name,
+        );
       });
     };
   }, [users]);
 
   const handleTabDown = useCallback(
     (selectionOverride?: number) => {
-      if (!textarea.current) return;
+      if (!textareaRef.current) return;
 
       if (results.length > 0) {
-        const cursorPosition = textarea.current.selectionStart;
-        const { value } = textarea.current;
+        const cursorPosition = textareaRef.current.selectionStart;
+        const { value } = textareaRef.current;
         ignoreSelectChange.current = true;
 
         const before = value.slice(0, cursorPosition);
@@ -81,7 +90,8 @@ export function Input({ input, setInput, send, users }: Props) {
         if (nextSelection >= results.length) {
           nextSelection = 0;
         }
-        const replacement = results[selectionOverride ?? nextSelection]!.item;
+        const replacement =
+          results[selectionOverride ?? nextSelection]!.item.name;
 
         setInput(
           (current) =>
@@ -89,9 +99,9 @@ export function Input({ input, setInput, send, users }: Props) {
         );
 
         requestAnimationFrame(() => {
-          if (textarea.current) {
-            textarea.current.selectionStart = textarea.current.selectionEnd =
-              start + replacement.length;
+          if (textareaRef.current) {
+            textareaRef.current.selectionStart =
+              textareaRef.current.selectionEnd = start + replacement.length;
           }
         });
 
@@ -108,10 +118,10 @@ export function Input({ input, setInput, send, users }: Props) {
   );
 
   const updateSearchTerm = useCallback(() => {
-    if (!textarea.current) return;
+    if (!textareaRef.current) return;
 
-    const cursorPosition = textarea.current.selectionStart;
-    const { value } = textarea.current;
+    const cursorPosition = textareaRef.current.selectionStart;
+    const { value } = textareaRef.current;
 
     const before = value.slice(0, cursorPosition);
     const after = value.slice(cursorPosition);
@@ -132,35 +142,78 @@ export function Input({ input, setInput, send, users }: Props) {
     setSelection(-1);
   }, []);
 
+  useEffect(() => {
+    if (!scrollViewportRef.current || results.length === 0) return;
+
+    const viewport = scrollViewportRef.current;
+    const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+
+    const scrollPercent = selection / (results.length - 1);
+    const scrollLeft = maxScrollLeft * scrollPercent;
+
+    viewport.scrollTo({
+      left: scrollLeft,
+      behavior: "smooth",
+    });
+  }, [selection, results]);
+
   return (
     <div className="relative">
       {results.length > 0 && (
-        <div className="absolute z-10 -mt-10 max-w-[calc(100%-0.5rem)] gap-x-2 overflow-hidden rounded-sm bg-stone-700 p-1 text-stone-400">
-          {results.map((r, index) => (
-            <span
-              key={index}
-              onClick={() => {
-                handleTabDown(index);
-                textarea.current?.focus();
-              }}
-              className={clsx("mr-1 cursor-pointer", {
-                "font-semibold":
-                  selection === -1
-                    ? index === 0
-                      ? true
-                      : false
-                    : selection === index,
-              })}
-            >
-              {r.item}
-            </span>
-          ))}
-        </div>
+        <ScrollArea.Root className="absolute z-10 mb-1 max-w-full overflow-hidden rounded-sm bg-stone-700/50 text-stone-400">
+          <ScrollArea.Viewport
+            ref={scrollViewportRef}
+            className="flex max-w-full gap-x-1 pb-0.5 whitespace-nowrap"
+          >
+            {results.map((r, index) => {
+              if (r.item.type === "emote") {
+                return (
+                  <span
+                    key={index}
+                    onClick={() => {
+                      handleTabDown(index);
+                      textareaRef.current?.focus();
+                    }}
+                    className={clsx(
+                      "mr-1 -mb-2 cursor-pointer [&>span]:-mb-0.5",
+                      {
+                        "[&>span]:grayscale":
+                          selection === -1 ? index !== 0 : selection !== index,
+                        "[&>span]:scale-110":
+                          selection === -1 ? index === 0 : selection === index,
+                      },
+                    )}
+                  >
+                    <Emote name={r.item.name} />
+                  </span>
+                );
+              }
+              return (
+                <span
+                  key={index}
+                  onClick={() => {
+                    handleTabDown(index);
+                    textareaRef.current?.focus();
+                  }}
+                  className={clsx("mr-1 cursor-pointer", {
+                    "font-semibold text-emerald-300":
+                      selection === -1 ? index === 0 : selection === index,
+                  })}
+                >
+                  {r.item.name}
+                </span>
+              );
+            })}
+          </ScrollArea.Viewport>
+          <ScrollArea.Scrollbar orientation="horizontal">
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
+        </ScrollArea.Root>
       )}
 
       <textarea
         id="input"
-        ref={textarea}
+        ref={textareaRef}
         placeholder={
           me
             ? `Hi ${me.name}, talk with ${users.length - 1} other chatter${
@@ -175,7 +228,7 @@ export function Input({ input, setInput, send, users }: Props) {
           updateSearchTerm();
         }}
         onKeyDown={(event) => {
-          if (!textarea.current) return;
+          if (!textareaRef.current) return;
           const { key } = event;
 
           if (key === "Tab") {
@@ -187,7 +240,7 @@ export function Input({ input, setInput, send, users }: Props) {
             const m = input.trim();
             setInput("");
             if (unfocusInput) {
-              textarea.current.blur();
+              textareaRef.current.blur();
             }
             if (m !== "") {
               send(m);

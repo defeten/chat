@@ -1,15 +1,8 @@
-/**
- * This file is the entry point for the React app, it sets up the root
- * element and renders the App component to the DOM.
- *
- * It is included in `src/index.html`.
- */
 import { StrictMode } from "react";
-import App from "./App";
-import "./emotes.css";
-import "./index.css";
-import "overlayscrollbars/overlayscrollbars.css";
 import { createRoot } from "react-dom/client";
+import App from "@/client/App";
+import "@/client/emotes.css";
+import "@/client/index.css";
 
 const elem = document.getElementById("root")!;
 

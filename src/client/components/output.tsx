@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import {
-  OverlayScrollbarsComponent,
-  type OverlayScrollbarsComponentRef,
-} from "overlayscrollbars-react";
+import { ScrollArea } from "radix-ui";
 import { MessageRenderer } from "@/client/components/messages/render-message";
 import type { RenderableMessage } from "@/types";
 
@@ -12,71 +9,62 @@ type Props = {
 };
 
 export function Output({ renderable }: Props) {
+  const viewportRef = useRef<HTMLDivElement>(null);
   const [scrollBehavior] = useLocalStorage<"smooth" | "instant">(
     "pref:scrollbehavior",
     "instant",
   );
-  const osRef = useRef<OverlayScrollbarsComponentRef<"div">>(null);
   const [scrollLock, setScrollLock] = useState(true);
   const BOTTOM_THRESHOLD = 6;
 
   const scrollToBottom = useCallback(() => {
-    const osInstance = osRef.current?.osInstance();
-    if (osInstance) {
-      const { viewport } = osInstance.elements();
-      viewport.scrollTo({
-        top: viewport.scrollHeight,
-        behavior: scrollBehavior,
-      });
-    }
+    if (!viewportRef.current) return;
+
+    viewportRef.current.scrollTo({
+      top: viewportRef.current.scrollHeight,
+      behavior: scrollBehavior,
+    });
   }, [scrollBehavior]);
 
   const handleScroll = useCallback(() => {
-    const osInstance = osRef.current?.osInstance();
-    if (!osInstance) return;
+    if (!viewportRef.current) return;
 
-    const { viewport } = osInstance.elements();
-    const { scrollTop, scrollHeight, clientHeight } = viewport;
+    const { scrollTop, scrollHeight, clientHeight } = viewportRef.current;
     const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
     const atBottom = distanceFromBottom <= BOTTOM_THRESHOLD;
 
     setScrollLock(atBottom);
   }, []);
 
-  const handleUpdated = useCallback(() => {
+  useEffect(() => {
     if (scrollLock) {
       scrollToBottom();
     }
-  }, [scrollLock, scrollToBottom]);
+  }, [renderable]);
 
   useEffect(() => {
     scrollToBottom();
   }, []);
 
   return (
-    <>
-      <OverlayScrollbarsComponent
-        ref={osRef}
-        element="div"
-        options={{
-          scrollbars: { theme: "os-theme-light", autoHide: "scroll" },
-        }}
-        className="grow"
-        events={{
-          initialized: scrollToBottom,
-          scroll: handleScroll,
-          updated: handleUpdated,
-        }}
+    <ScrollArea.Root className="relative h-0 grow">
+      <ScrollArea.Viewport
+        onScroll={handleScroll}
+        ref={viewportRef}
+        className="h-full shrink"
       >
         {renderable.map((message) => {
           return <MessageRenderer key={message.data.id} message={message} />;
         })}
-        <div className="pointer-events-none sticky bottom-0 z-10 h-2 w-full bg-linear-to-t from-stone-900 to-transparent" />
-      </OverlayScrollbarsComponent>
+        <div className="pointer-events-none absolute bottom-0 z-10 h-2 w-full bg-linear-to-t from-stone-900 to-transparent" />
+      </ScrollArea.Viewport>
       <div className="absolute top-2 right-2 text-xs">
         {scrollLock ? "🔒" : "🔓"}
         {scrollBehavior === "instant" ? "⚡" : "🪶"}
       </div>
-    </>
+      <ScrollArea.ScrollAreaScrollbar className="w-1 rounded-md bg-stone-700">
+        <ScrollArea.Thumb className="w-full bg-stone-800" />
+      </ScrollArea.ScrollAreaScrollbar>
+    </ScrollArea.Root>
   );
 }

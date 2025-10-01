@@ -11,7 +11,6 @@ import {
 import { useLocalStorage } from "@uidotdev/usehooks";
 import clsx from "clsx";
 import Fuse from "fuse.js";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import emotes from "@/client/emotes.json";
 import type { UnfocusInputAfterSend, User } from "@/types";
@@ -137,37 +136,25 @@ export function Input({ input, setInput, send, users }: Props) {
     <div className="relative">
       {results.length > 0 && (
         <div className="absolute z-10 -mt-10 max-w-[calc(100%-0.5rem)] gap-x-2 overflow-hidden rounded-sm bg-stone-700 p-1 text-stone-400">
-          <OverlayScrollbarsComponent
-            element="div"
-            options={{
-              scrollbars: { theme: "os-theme-light" },
-              overflow: {
-                x: "scroll",
-                y: "hidden",
-              },
-            }}
-            className="w-full"
-          >
-            {results.map((r, index) => (
-              <span
-                key={index}
-                onClick={() => {
-                  handleTabDown(index);
-                  textarea.current?.focus();
-                }}
-                className={clsx("mr-1 cursor-pointer", {
-                  "font-semibold":
-                    selection === -1
-                      ? index === 0
-                        ? true
-                        : false
-                      : selection === index,
-                })}
-              >
-                {r.item}
-              </span>
-            ))}
-          </OverlayScrollbarsComponent>
+          {results.map((r, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                handleTabDown(index);
+                textarea.current?.focus();
+              }}
+              className={clsx("mr-1 cursor-pointer", {
+                "font-semibold":
+                  selection === -1
+                    ? index === 0
+                      ? true
+                      : false
+                    : selection === index,
+              })}
+            >
+              {r.item}
+            </span>
+          ))}
         </div>
       )}
 

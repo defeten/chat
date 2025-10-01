@@ -1,5 +1,5 @@
 import type { ComponentProps, PropsWithChildren } from "react";
-import { cn } from "@/client/util/cn";
+import clsx from "clsx";
 
 export function Button(
   props: PropsWithChildren<
@@ -12,7 +12,7 @@ export function Button(
       data-theme={props.theme}
       type="button"
       title={props.title}
-      className={cn(
+      className={clsx(
         "cursor-pointer rounded-md bg-transparent p-1 transition-colors",
         {
           "hover:bg-stone-700": props.theme === "dark",

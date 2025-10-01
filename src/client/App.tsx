@@ -4,7 +4,6 @@ import { useSocketMessages } from "@/client/hooks/useMessages";
 import { useSocket } from "@/client/hooks/useSocket";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import { NoIdentity } from "@/client/components/auth/no-identity";
-import { EmoteMenu } from "@/client/components/emotes";
 import { Settings } from "@/client/components/settings";
 import { UserList } from "@/client/components/users";
 import { Chat } from "@/client/Chat";
@@ -49,7 +48,6 @@ export default function App() {
             users={users}
           />
         )}
-        {context === "emotes" && <EmoteMenu />}
         {context === "users" && <UserList users={users} />}
         {context === "settings" && <Settings />}
       </div>

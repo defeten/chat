@@ -31,6 +31,10 @@ function mergeStrings(nodes: ReactNode[]): ReactNode[] {
 
 export function UserMessage({ data, _continue }: Props) {
   const me = useContext(IdentityContext);
+  let ownMessage = false;
+  if (me && data.name === me.name) {
+    ownMessage = true;
+  }
   let mentionsMe = false;
   if (me?.name) {
     mentionsMe = new RegExp(me.name, "gi").test(data.content);
@@ -53,7 +57,11 @@ export function UserMessage({ data, _continue }: Props) {
   return (
     <div
       data-id={data.id}
-      className={clsx({ "mb-[0.5px] rounded-xs bg-cyan-700/50": mentionsMe })}
+      className={clsx("mb-px rounded-sm", {
+        "rounded-xs bg-cyan-700/50": mentionsMe,
+        "hover:bg-stone-700/10": !mentionsMe && !ownMessage,
+        "bg-stone-700/35": ownMessage,
+      })}
     >
       <Time timestamp={data.at} />
       {!_continue && (

@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { Toaster } from "react-hot-toast";
 import { useSocketMessages } from "@/client/hooks/useMessages";
 import { useSocket } from "@/client/hooks/useSocket";
 import { IdentityContext } from "@/client/context/IdentityContext";
@@ -38,7 +37,6 @@ export default function App() {
 
   return (
     <IdentityContext.Provider value={me}>
-      <Toaster position="top-right" />
       {view === "chat" && (
         <>
           <Output renderable={msgs} />

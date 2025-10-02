@@ -17,8 +17,7 @@
     "fuse.js": "^7.1.0",
     "radix-ui": "^1.4.3",
     "react": "^19",
-    "react-dom": "^19",
-    "react-hot-toast": "^2.6.0"
+    "react-dom": "^19"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",

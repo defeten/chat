@@ -11,7 +11,7 @@ type Props = {
 
 export function Footer({ view, setView }: Props) {
   return (
-    <div className="mx-auto mb-8 inline-flex w-min items-center justify-center rounded-full bg-stone-800 md:mx-0 md:mb-0 md:w-full md:bg-transparent">
+    <div className="mx-auto flex h-[5%] w-min shrink-0 items-center justify-center rounded-full bg-stone-800 md:mx-0 md:mb-0 md:w-full md:bg-transparent">
       <Switcher view={view} setView={setView} />
       <Separator.Root
         className="mx-2 h-4 w-px bg-stone-700 md:mx-0 md:w-0 md:grow md:bg-transparent"

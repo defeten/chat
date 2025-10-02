@@ -47,11 +47,11 @@ export function Output({ renderable }: Props) {
   }, []);
 
   return (
-    <ScrollArea.Root className="relative h-0 grow">
+    <ScrollArea.Root className="relative min-h-0 flex-1">
       <ScrollArea.Viewport
         onScroll={handleScroll}
         ref={viewportRef}
-        className="h-full shrink pt-2"
+        className="h-full pt-2"
       >
         {renderable.map((message) => {
           return <MessageRenderer key={message.data.id} message={message} />;

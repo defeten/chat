@@ -39,21 +39,14 @@ export default function App() {
   return (
     <IdentityContext.Provider value={me}>
       <Toaster position="top-right" />
-      <div className="flex grow flex-col">
-        {view === "chat" && (
-          <>
-            <Output renderable={msgs} />
-            <Input
-              input={input}
-              setInput={setInput}
-              send={send}
-              users={users}
-            />
-          </>
-        )}
-        {view === "users" && <UserList users={users} />}
-        {view === "settings" && <Settings />}
-      </div>
+      {view === "chat" && (
+        <div className="flex h-[95%] flex-col">
+          <Output renderable={msgs} />
+          <Input input={input} setInput={setInput} send={send} users={users} />
+        </div>
+      )}
+      {view === "users" && <UserList users={users} />}
+      {view === "settings" && <Settings />}
       <Footer view={view} setView={setView} />
     </IdentityContext.Provider>
   );

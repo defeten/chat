@@ -160,7 +160,7 @@ export function Input({ input, setInput, send, users }: Props) {
   }, [selection, results]);
 
   return (
-    <div className="relative">
+    <div className="relative shrink-0">
       {results.length > 0 && (
         <ScrollArea.Root className="absolute z-10 mb-1 max-w-full overflow-hidden rounded-sm bg-stone-700/50 text-stone-400">
           <ScrollArea.Viewport

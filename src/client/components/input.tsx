@@ -8,12 +8,12 @@ import {
   useRef,
   useState,
 } from "react";
-import { Emote } from "./messages/emote";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import clsx from "clsx";
 import Fuse from "fuse.js";
 import { ScrollArea } from "radix-ui";
 import { IdentityContext } from "@/client/context/IdentityContext";
+import { Emote } from "@/client/components/messages/emote";
 import emotes from "@/client/emotes.json";
 import type { UnfocusInputAfterSend, User } from "@/types";
 

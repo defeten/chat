@@ -1,5 +1,5 @@
-import { Connections } from "../..";
-import type { Event } from "./event";
+import { Connections } from "@/index";
+import type { Event } from "@/server/socket/event";
 import type { UserSockets } from "@/types";
 
 export function emitToSocket(socket: UserSockets[number], event: Event) {
@@ -11,7 +11,6 @@ export function emitToUser(sockets: UserSockets, event: Event) {
 }
 
 export function broadcast(event: Event, exclude?: string) {
-  const m = event.json();
   let pool = [...Connections.entries()];
   if (exclude) {
     pool = pool.filter(([id]) => id !== exclude);

@@ -1,4 +1,4 @@
-import { Author } from "./messages/author";
+import { Author } from "@/client/components/messages/author";
 import type { User } from "@/types";
 
 type Props = {

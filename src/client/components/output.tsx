@@ -51,7 +51,7 @@ export function Output({ renderable }: Props) {
       <ScrollArea.Viewport
         onScroll={handleScroll}
         ref={viewportRef}
-        className="h-full shrink"
+        className="h-full shrink pt-2"
       >
         {renderable.map((message) => {
           return <MessageRenderer key={message.data.id} message={message} />;

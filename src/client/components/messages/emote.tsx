@@ -3,5 +3,9 @@ type Props = {
 };
 
 export function Emote({ name }: Props) {
-  return <span title={name} data-emote={name} />;
+  return (
+    <span title={name} data-emote={name}>
+      {name + " "}
+    </span>
+  );
 }

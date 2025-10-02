@@ -2,10 +2,15 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
-  text-indent: -999em;
   margin-top: -32px;
   top: 8px;
   margin-right: 0.25rem;
+  user-select: text;
+  color: transparent;
+}
+[data-emote]::selection {
+  background: transparent;
+  text-decoration: solid line-through oklch(80.9% 0.105 251.813 / 0.5) 32px;
 }
 
 [data-emote="DIESOFCRINGE"] {

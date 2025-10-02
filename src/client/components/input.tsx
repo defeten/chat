@@ -238,13 +238,14 @@ export function Input({ input, setInput, send, users }: Props) {
             ignoreSelectChange.current = false;
             const m = input.trim();
             setInput("");
-            if (unfocusInput) {
-              textareaRef.current.blur();
-            }
             if (m !== "") {
               send(m);
             }
             setSelection(-1);
+            if (unfocusInput) {
+              textareaRef.current.blur();
+              setSearchTerm("");
+            }
           } else if (key === " ") {
             ignoreSelectChange.current = false;
             setSearchTerm("");

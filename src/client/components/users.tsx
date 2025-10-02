@@ -7,7 +7,7 @@ type Props = {
 
 export function UserList({ users }: Props) {
   return (
-    <div className="mx-auto my-auto grid grid-cols-2 text-center">
+    <div className="flex h-full flex-col">
       <p className="col-span-2 text-center font-semibold">
         Users ({users.length})
       </p>

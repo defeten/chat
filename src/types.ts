@@ -110,3 +110,4 @@ export type ScrollBehavior = "instant" | "smooth";
 export type MaxLinkLength = number;
 export type LinkBehavior = "copy" | "newtab";
 export type UnfocusInputAfterSend = boolean;
+export type FooterOffset = boolean;

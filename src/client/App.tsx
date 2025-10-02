@@ -40,10 +40,10 @@ export default function App() {
     <IdentityContext.Provider value={me}>
       <Toaster position="top-right" />
       {view === "chat" && (
-        <div className="flex h-[95%] flex-col">
+        <>
           <Output renderable={msgs} />
           <Input input={input} setInput={setInput} send={send} users={users} />
-        </div>
+        </>
       )}
       {view === "users" && <UserList users={users} />}
       {view === "settings" && <Settings />}

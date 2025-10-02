@@ -5,9 +5,10 @@ import { useSocket } from "@/client/hooks/useSocket";
 import { IdentityContext } from "@/client/context/IdentityContext";
 import { NoIdentity } from "@/client/components/auth/no-identity";
 import { Footer } from "@/client/components/footer";
+import { Input } from "@/client/components/input";
+import { Output } from "@/client/components/output";
 import { Settings } from "@/client/components/settings";
 import { UserList } from "@/client/components/users";
-import { Chat } from "@/client/Chat";
 import { clientUserMessageEvent } from "@/server/socket/event";
 import type { AppView } from "@/types";
 
@@ -40,13 +41,15 @@ export default function App() {
       <Toaster position="top-right" />
       <div className="flex grow flex-col">
         {view === "chat" && (
-          <Chat
-            msgs={msgs}
-            input={input}
-            send={send}
-            setInput={setInput}
-            users={users}
-          />
+          <>
+            <Output renderable={msgs} />
+            <Input
+              input={input}
+              setInput={setInput}
+              send={send}
+              users={users}
+            />
+          </>
         )}
         {view === "users" && <UserList users={users} />}
         {view === "settings" && <Settings />}

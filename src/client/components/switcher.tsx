@@ -1,12 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
-import {
-  ChatBubbleIcon,
-  ExitIcon,
-  GearIcon,
-  PersonIcon,
-} from "@radix-ui/react-icons";
+import { ChatBubbleIcon, GearIcon, PersonIcon } from "@radix-ui/react-icons";
 import clsx from "clsx";
-import { Separator, ToggleGroup } from "radix-ui";
+import { ToggleGroup } from "radix-ui";
 import { tw } from "@/client/util/tw";
 import type { AppView } from "@/types";
 

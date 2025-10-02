@@ -8,15 +8,6 @@ type Props = {
 
 export const MessageRenderer = memo(({ message }: Props) => {
   switch (message.type) {
-    case "HISTORY": {
-      return message.data.messages.map((m, index, array) => {
-        let _continue = false;
-        if (index > 0 && array[index - 1]?.name === m.name) {
-          _continue = true;
-        }
-        return <UserMessage key={m.id} data={m} _continue={_continue} />;
-      });
-    }
     case "UMSG": {
       return <UserMessage data={message.data} />;
     }

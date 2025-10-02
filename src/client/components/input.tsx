@@ -216,6 +216,7 @@ export function Input({ input, setInput, send, users }: Props) {
       <textarea
         id="input"
         ref={textareaRef}
+        enterKeyHint="send"
         placeholder={
           me ? `Write a message, ${me.name}!` : "Authenticate to send messages."
         }

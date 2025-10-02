@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --hot src/index.ts",
+    "dev": "bun --hot --define process.env.NODE_ENV:\"development\" src/index.ts",
     "build": "bun build.ts",
     "start": "bun --cwd=./dist index.js"
   },

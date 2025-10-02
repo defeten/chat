@@ -14,5 +14,19 @@ export const MessageRenderer = memo(({ message }: Props) => {
     case "UMSGC": {
       return <UserMessage data={message.data} _continue={true} />;
     }
+    case "SEPARATOR": {
+      return (
+        <div className="relative mb-px flex h-6 w-full items-center justify-center overflow-hidden">
+          <div className="absolute top-1/2 h-1 w-full -translate-y-1/2 rounded-md bg-red-900"></div>
+          <span className="z-10 bg-stone-900 px-2 text-red-900">
+            {new Date(message.data.at).toLocaleString(undefined, {
+              hourCycle: "h23",
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
+          </span>
+        </div>
+      );
+    }
   }
 });

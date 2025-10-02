@@ -60,3 +60,4 @@ const server = serve<Session, {}>({
 });
 
 console.log(`-> ${server.url}`);
+console.log(`mode -> ${process.env.NODE_ENV}`);

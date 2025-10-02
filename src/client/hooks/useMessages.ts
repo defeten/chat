@@ -60,6 +60,10 @@ export function useSocketMessages(socket: WebSocket | null) {
               _his.push({ type: "UMSG", data: message });
             }
           });
+          _his.push({
+            type: "SEPARATOR",
+            data: { id: message.data.id, at: message.data.at },
+          });
           setMsgs(_his);
           break;
         }

@@ -91,14 +91,16 @@ export type Message =
   | { type: "UMSGC"; data: UMSG }
   | { type: "clientUMSG"; data: clientUMSG }
   | { type: "HISTORY"; data: HISTORY };
-export type RenderableMessage = Extract<
-  Message,
-  | { type: "JOIN" }
-  | { type: "LEAVE" }
-  | { type: "UMSG" }
-  | { type: "UMSGC" }
-  | { type: "HISTORY" }
->;
+export type RenderableMessage =
+  | Extract<
+      Message,
+      | { type: "JOIN" }
+      | { type: "LEAVE" }
+      | { type: "UMSG" }
+      | { type: "UMSGC" }
+      | { type: "HISTORY" }
+    >
+  | { type: "SEPARATOR"; data: { id: string; at: number } };
 
 export type API_Check_Response = {
   exists: boolean;

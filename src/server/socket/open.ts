@@ -57,12 +57,14 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
     }),
   );
   // send the connection the latest 200 messages
-  emitToSocket(
-    socket,
-    new HistoryEvent({
-      messages: History,
-      at: now,
-      id: id(),
-    }),
-  );
+  if (History.length > 0) {
+    emitToSocket(
+      socket,
+      new HistoryEvent({
+        messages: History,
+        at: History[History.length - 1]?.at ?? now,
+        id: id(),
+      }),
+    );
+  }
 }

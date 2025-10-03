@@ -32,7 +32,7 @@ export function Footer({ view, setView }: Props) {
       <button
         title="Sign out"
         type="button"
-        className="cursor-pointer px-2"
+        className="cursor-pointer px-2 py-1.5"
         onClick={() => {
           fetch("/api/signout").then(() => window.location.reload());
         }}

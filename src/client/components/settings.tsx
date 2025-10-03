@@ -114,7 +114,9 @@ export function Settings() {
         </Switch.Root>
       </div>
       <div className="flex items-center justify-between">
-        <label htmlFor="footeroffset">Mobile footer offset</label>
+        <label className="text-sm font-semibold" htmlFor="footeroffset">
+          Mobile footer offset
+        </label>
         <Switch.Root
           id="footeroffset"
           data-state={footerOffset ? "checked" : "unchecked"}

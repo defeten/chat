@@ -28,7 +28,9 @@ export function Switcher({ view, setView }: Props) {
       data-orientation="horizontal"
       type="single"
       value={view}
-      onValueChange={(value) => setView(value as AppView)}
+      onValueChange={(value) => {
+        if (value !== "") setView(value as AppView);
+      }}
       aria-label="Main view"
       className="relative inline-flex w-min rounded-full"
     >

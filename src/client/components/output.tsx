@@ -58,7 +58,7 @@ export function Output({ renderable }: Props) {
         })}
         <div className="pointer-events-none absolute bottom-0 z-10 h-2 w-full bg-linear-to-t from-stone-900 to-transparent" />
       </ScrollArea.Viewport>
-      <div className="absolute top-2 right-2 text-xs">
+      <div className="absolute top-2 right-0 text-xs">
         {scrollLock ? "🔒" : "🔓"}
         {scrollBehavior === "instant" ? "⚡" : "🪶"}
       </div>

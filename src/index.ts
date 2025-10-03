@@ -14,7 +14,6 @@ import type { ConnectionsMap, Session, UMSG } from "@/types";
 
 await init();
 export const Connections: ConnectionsMap = new Map();
-export const History = new Array<UMSG>();
 
 const server = serve<Session, {}>({
   port: 5001,

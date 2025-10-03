@@ -1,4 +1,4 @@
-import { History } from "@/index";
+import { insertMessage } from "../data/messages";
 import { UserMessageEvent } from "@/server/socket/event";
 import { broadcast } from "@/server/socket/send";
 import { id } from "@/server/util";
@@ -26,10 +26,7 @@ export function message(
       name: socket.data.username,
       permission: socket.data.permission,
     };
-    if (History.length === 200) {
-      History.shift();
-    }
-    History.push(d);
+    insertMessage(d);
     // Standard user message, send to all clients
     broadcast(new UserMessageEvent(d));
   }

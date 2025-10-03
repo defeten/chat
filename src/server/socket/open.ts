@@ -1,12 +1,13 @@
-import { id } from "../util";
+import { getLatestMessages } from "../data/messages";
+import { Connections } from "@/index";
 import {
   HistoryEvent,
   IdentityEvent,
   UserJoinEvent,
   UsersEvent,
-} from "./event";
-import { broadcast, emitToSocket } from "./send";
-import { Connections, History } from "@/index";
+} from "@/server/socket/event";
+import { broadcast, emitToSocket } from "@/server/socket/send";
+import { id } from "@/server/util";
 import type { Session, UserSockets } from "@/types";
 
 export function open(socket: Bun.ServerWebSocket<Session>) {
@@ -57,14 +58,14 @@ export function open(socket: Bun.ServerWebSocket<Session>) {
     }),
   );
   // send the connection the latest 200 messages
-  if (History.length > 0) {
+  getLatestMessages().then((response) => {
     emitToSocket(
       socket,
       new HistoryEvent({
-        messages: History,
-        at: History[History.length - 1]?.at ?? now,
-        id: id(),
+        at: now,
+        id: Bun.randomUUIDv7(),
+        messages: response,
       }),
     );
-  }
+  });
 }

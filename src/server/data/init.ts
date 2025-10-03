@@ -16,4 +16,11 @@ export async function init() {
     permission INTEGER NOT NULL,
     password TEXT NOT NULL
   ) STRICT;`;
+  await sqlite`CREATE TABLE IF NOT EXISTS messages (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    permission INTEGER NOT NULL,
+    content TEXT NOT NULL,
+    at INTEGER NOT NULL
+  ) STRICT;`;
 }
